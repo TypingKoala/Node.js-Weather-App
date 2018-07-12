@@ -2,6 +2,7 @@ const fs = require('fs');
 var weather = require('./weather');
 const url = require('url');
 const path = require('path');
+const background = require('./background')
 
 function mergeValues(content, values) {
     for (var key in values) {
@@ -39,6 +40,22 @@ function renderWeather(request, response) {
             response.write(body);
             response.end();
         })
+
+}
+
+function renderMainJs(request, response) {
+    console.log(request.url)
+    var contents = fs.readFileSync('./static/assets/js/main.js', {
+        encoding: 'utf8'
+    });
+    background.getBackground().then(function(parsedData) {
+        console.log(parsedData.url);
+        body = mergeValues(contents, {'background': parsedData.url});
+        response.write(body);
+        response.end();
+    }).catch(error => {
+        console.log(error.message);
+    })
 
 }
 
@@ -95,3 +112,4 @@ function webServer(req, res) {
 module.exports.renderWeather = renderWeather;
 module.exports.assetsGet = assetsGet;
 module.exports.webServer = webServer;
+module.exports.renderMainJs = renderMainJs;

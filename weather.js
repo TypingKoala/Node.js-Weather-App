@@ -28,8 +28,8 @@ function getLocationAndWeather(input) {
 
 const input = process.argv.splice(2);
 
-// Run App
-getLocationAndWeather(input);
+// Run App in cmd
+// getLocationAndWeather(input);
 
 // Functions
 function printWeather(loc, conditions, temperature) {
@@ -122,39 +122,6 @@ function getWeather(latitude, longitude, loc) {
     })
 }
 
-function getImage(input) {
-    return new Promise((resolve, reject) => {
-        try {
-            https.get(splashbaseEndpoint, (response) => {
-                // Check if 200 response
-                if (response.statusCode === 200) {
-                    body = "";
-                    response.on('data', data => {
-                        body += data.toString();
-                    });
-                    response.on('end', () => {
-                        const splashbaseResponse = JSON.parse(body);
-                            const imageUrl = splashbaseResponse.url;
-                            resolve(imageUrl);
-                    });
-                } else {
-                    splashbaseRequestError(response);
-                }
-            });
-        } catch (error) {
-            const splashbaseError = new Error('http.get Critical Error Thrown for Splashbase. ' + error.message);
-            reject(splashbaseError);
-        }
-
-    
-        function splashbaseRequestError(response) {
-            message = `Splashbase request failed with error ${response.statusCode} ${http.STATUS_CODES[response.statusCode]}`;
-            let statusCodeError = new Error(message);
-            reject(statusCodeError);
-        }
-    })
-}
 
 module.exports.getWeather = getWeather;
 module.exports.getCoords = getCoords;
-module.exports.getImage = getImage;

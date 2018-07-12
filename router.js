@@ -4,7 +4,11 @@ const querystring = require('querystring');
 
 function route(request, response) {
     // If in static assets
-    if (request.method.toUpperCase() === 'GET' && request.url.slice(0,8) === "/assets/" || request.url === "/favicon.ico") {
+    if (request.method.toUpperCase() === 'GET' && request.url === "/assets/js/main.js") {
+        response.writeHead(200, headers);
+        renderer.renderMainJs(request, response);
+    }
+    else if (request.method.toUpperCase() === 'GET' && request.url.slice(0,8) === "/assets/" || request.url === "/favicon.ico") {
         renderer.webServer(request, response);
     }
     // If search POST request
