@@ -22,14 +22,19 @@ function renderWeather(request, response) {
     var contents = fs.readFileSync('./static/index.html', {
         encoding: 'utf8'
     });
-    console.log(request.url.slice(1))
-    weather.getCoords(request.url.slice(1))
+    if (request.url.slice(1)) {
+        input = request.url.slice(1);
+    } else {
+        input = "Los Angeles"
+    }
+    weather.getCoords(input)
         .then(gmaps => weather.getWeather(gmaps.lat, gmaps.long, gmaps.loc))
         .then(weather => {
             var values = {};
             values.title = weather.location;
             values.line1 = `It is currently ${Math.round(weather.temperature)} degrees and ${weather.conditions.toLowerCase()}.`;
-            values.line2 = weather.location + "<br>" + weather.hourlysummary;
+            values.line2 = weather.location;
+            values.line3 = weather.hourlysummary;
             var body = mergeValues(contents, values)
             response.write(body);
             response.end();
