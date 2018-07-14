@@ -1,0 +1,26 @@
+{
+  "name": "prettyweather",
+  "version": "1.0.0",
+  "description": "Web application for displaying the weather in a visually-appealing way",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "nodemon": "^1.18.1",
+    "pump": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node_modules/.bin/nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TypingKoala/Node.js-Weather-App.git"
+  },
+  "author": "Johnny Bui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TypingKoala/Node.js-Weather-App/issues"
+  },
+  "homepage": "https://github.com/TypingKoala/Node.js-Weather-App#readme"
+}

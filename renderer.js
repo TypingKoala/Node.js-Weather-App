@@ -1,8 +1,8 @@
-const fs = require('fs');
+var fs = require('fs');
 var weather = require('./weather');
-const url = require('url');
-const path = require('path');
-const background = require('./background')
+var url = require('url');
+var path = require('path');
+var background = require('./background')
 
 function mergeValues(content, values) {
     for (var key in values) {
@@ -62,11 +62,11 @@ function renderMainJs(request, response) {
 function webServer(req, res) {
     console.log(`${req.method} ${req.url}`);
     // parse URL
-    const parsedUrl = url.parse(req.url);
+    var parsedUrl = url.parse(req.url);
     // extract URL path
     let pathname = `./static${parsedUrl.pathname}`;
     // maps file extention to MIME types
-    const mimeType = {
+    var mimeType = {
         '.ico': 'image/x-icon',
         '.html': 'text/html',
         '.js': 'text/javascript',
@@ -100,7 +100,7 @@ function webServer(req, res) {
                 res.end(`Error getting the file: ${err}.`);
             } else {
                 // based on the URL path, extract the file extention. e.g. .js, .doc, ...
-                const ext = path.parse(pathname).ext;
+                var ext = path.parse(pathname).ext;
                 // if the file is found, set Content-type and send data
                 res.setHeader('Content-type', mimeType[ext] || 'text/plain');
                 res.end(data);
