@@ -1,5 +1,3 @@
-// Problem: Create a command line API which accepts a zip code as a parameter. Output the current weather.
-
 // Requires
 const https = require('https');
 const http = require('http');
@@ -17,25 +15,7 @@ const googleMapsApiParam = '&key=';
 const darkSkyEndpoint = 'https://api.darksky.net/forecast/';
 const splashbaseEndpoint = 'http://www.splashbase.co/api/v1/images/random';
 
-// Inputs
-function getLocationAndWeather(input) {
-    if (input.length > 0) {
-        getCoords(input).then((result) => getWeather(result.lat, result.long, result.loc)).then(result => printWeather(result.location, result.conditions, result.temSperature) )
-    } else {
-        console.log('Please run with additional argument of location.')
-    }
-}
-
-const input = process.argv.splice(2);
-
-// Run App in cmd
-// getLocationAndWeather(input);
-
 // Functions
-function printWeather(loc, conditions, temperature) {
-    let message = `In ${loc}, it is currently ${conditions} with a temperature of ${Math.round(temperature)} degrees.`;
-    console.log(message);
-}
 
 function printError(error) {
     console.log(error.message);

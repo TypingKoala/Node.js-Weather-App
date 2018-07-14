@@ -36,7 +36,7 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'{{{background}}}': 'center'
+							[backgroundUrl]: 'center'
 						},
 
 					// Delay.

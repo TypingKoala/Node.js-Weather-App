@@ -1,9 +1,31 @@
 // Requires
-var http = require('http');
-var router = require('./router');
-const port = 80;
+const express = require('express');
+const pug = require('pug');
+const routes = require('./routes')
 
-http.createServer((request, response) => {
-    router.route(request, response);
-}).listen(port);
-console.log('Server listening on port ' + port);
+// Define app
+const app = express();
+
+// Middleware
+app.set('view engine', "pug");
+
+// Routes
+app.use(express.static('static'));
+app.use(routes);
+
+
+// Error handling
+
+
+// Start app
+if (process.argv[2]) {
+    try {
+        app.listen(process.argv[2], () => {
+                console.log('Listening on port ' + process.argv[2]);
+        })
+    } catch {
+            console.log('That port number is invalid.')
+        }
+    } else {
+        console.log('Please set the port number as an argument.')
+    }

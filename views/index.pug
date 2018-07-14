@@ -1,0 +1,38 @@
+doctype html
+//
+  Eventually by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+html
+  head
+    title #{location}
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    link(rel='stylesheet', href='assets/css/main.css')
+  body.is-preload
+    // Header
+    header#header
+      h1 It is currently #{temperature} and #{conditions}.
+      h3 #{location}
+      p #{summary}
+    // Search Location
+    form#signup-form(method='POST', action='/')
+      input#search(type='search', name='search', placeholder="What's the weather in...")
+      input(type='submit', value='search')
+    // Footer
+    footer#footer
+      ul.copyright
+        li Made with ❤ by Johnny Bui.
+        li
+          | Using 
+          a(href='https://darksky.net/dev') Dark Sky
+          | , 
+          a(href='https://developers.google.com/maps/documentation/geocoding/start') Google Geocoding
+          | , 
+          | 						and 
+          a(href='http://www.splashbase.co/api') Splashbase API
+          |  on Node.js.
+    // Scripts
+    script.
+      var backgroundUrl = "#{backgroundUrl}";
+    script(src='assets/js/main.js')
