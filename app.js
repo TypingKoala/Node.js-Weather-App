@@ -21,11 +21,13 @@ app.use(routes);
 if (process.argv[2]) {
     try {
         app.listen(process.argv[2], () => {
-                console.log('Listening on port ' + process.argv[2]);
+            console.log('Listening on port ' + process.argv[2]);
         })
     } catch {
-            console.log('That port number is invalid.')
-        }
-    } else {
-        console.log('Please set the port number as an argument.')
+        console.log('That port number is invalid.')
     }
+} else {
+    app.listen(3000, () => {
+        console.log('Listening on port ' + 3000);
+    })
+}
